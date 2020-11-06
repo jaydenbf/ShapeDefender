@@ -13,8 +13,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Collidable
+  - Enemy
   - 
   - 
   - 
@@ -38,6 +38,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: World
+    uniqueID: 4086473731
+    locked: 0
+  - name: Walkable
+    uniqueID: 2698170815
+    locked: 0
+  - name: Collidable
+    uniqueID: 1907730005
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
