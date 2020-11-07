@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         sGameManager = this;
-        ButtonBehavior.setGameManager(this);
+        // ButtonBehavior.setGameManager(this);
     }
 
     // Update is called once per frame
