@@ -6,7 +6,7 @@ public class ResourceGeneration : MonoBehaviour
 {
     void Start()
     {
-        int seed = UnityEngine.Random.Range(0, 1000000);
+        /*int seed = UnityEngine.Random.Range(0, 1000000);
 
         for (float x = -31.5f; x <= 31.5f; x++)
         {
@@ -21,7 +21,7 @@ public class ResourceGeneration : MonoBehaviour
                     o.transform.position = new Vector3(x, y, 0f);
                 }
             }
-        }
+        }*/
     }
 
     void Update()
