@@ -11,12 +11,24 @@ public class HarvesterBuilding : Building
     #endregion
 
     #region Harvesting Output
-    private float rate = 1f;
+    private float miningRate = 1f;
+    private float sendingRate = 1f;
 
     #endregion
-    
+
+    #region ResourceTotal
+     /*
+     * [0] = redCircle, [1] = greenCircle, [2] = blueCircle,
+     * [3] = redSquare, [4] = greenSquare, [5] = blueSquare,
+     * [6] = redStar, [7] = greenStar, [8] = blueStar
+     */
+    private float[] allResourceTotal;
+    #endregion
+
+
     #region Base Connection and Resources
     private GameObject[] connectedBase;
+    private int totalBaseConnectionLimit = 8;
 
     #endregion
 
@@ -24,13 +36,16 @@ public class HarvesterBuilding : Building
     void Start()
     {
         // Eight bases / road connected at one time
-        connectedBase = new GameObject[8];
+        connectedBase = new GameObject[totalBaseConnectionLimit];
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         harvestResource();
+        checkConnections();
+        resourceHander();
     }
 
     #region Abstract Methods
@@ -63,6 +78,12 @@ public class HarvesterBuilding : Building
     public override void takeDamage(float damage)
     {
         health -= damage;
+        if(health < 0f)
+        {
+            // Send all resources to different building
+
+            // delete this game object
+        }
     }
 
     public override float getHealth()
@@ -70,25 +91,71 @@ public class HarvesterBuilding : Building
         return health;
     }
 
-    public override void receiveResource()
+    public override void receiveResource(float [] recievedResources)
     {
-
+        for(int i = 0; i < 9; i++)
+        {
+            allResourceTotal[i] += (float)recievedResources[i];
+        }
     }
 
     public override void sendResource()
     {
+        /*  Connecting building path and send resources to it at a certain rate\
+         *  Send to Building System and it will send it to them
+         */
+
+        // Evenly Split 
+
+        for(int i = 0; i < totalBaseConnectionLimit; i++)
+        {
+            if(connectedBase[i] != null)
+            {
+                // Get the base type
+
+                // Send to game manager
+
+                //
+            }
+        }
 
     }
 
+    public override void resourceHander()
+    {
+        for(int i = 0; i < totalBaseConnectionLimit; i++)
+        {
+            if(connectedBase[i] != null)
+            {
+                sendResource();
+            }
+        }
+    }
+
+    public override float[] resourceTotal()
+    {
+        return allResourceTotal;
+    }
     #endregion
 
+    public void checkConnections()
+    {
+        for(int i = 0; i < totalBaseConnectionLimit; i++)
+        {
+            if(connectedBase[i] != null && !connectedBase[i].scene.IsValid())
+            {
+                connectedBase[i] = null;
+            }
+        }
+    }
 
     #region Harvesting Output Methods
     public void harvestResource()
     {
+        // If building is on top of resoucre, colliding mine resource
+
+        // Get resource type and increase resourceCount. 
 
     }
-
-
     #endregion
 }

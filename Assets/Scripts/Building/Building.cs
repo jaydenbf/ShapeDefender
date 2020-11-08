@@ -13,6 +13,8 @@ public abstract class Building : MonoBehaviour
     public abstract void disconnectBuilding(GameObject build);
     public abstract void takeDamage(float damage);
     public abstract float getHealth();
-    public abstract void receiveResource();
+    public abstract void resourceHander();
+    public abstract void receiveResource(float[] recievedResources);
     public abstract void sendResource();
+    public abstract float[] resourceTotal();
 }
