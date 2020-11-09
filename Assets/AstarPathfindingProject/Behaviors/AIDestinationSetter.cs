@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Security.Cryptography;
 
 namespace Pathfinding {
 	/// <summary>
@@ -35,5 +36,10 @@ namespace Pathfinding {
 		void Update () {
 			if (target != null && ai != null) ai.destination = target.position;
 		}
+
+		public void SetTarget(Transform t)
+        {
+			target = t;
+        }
 	}
 }
