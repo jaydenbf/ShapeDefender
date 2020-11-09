@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private static GameManager sGameManager = null;
-    public static GameManager TheGameManager() { return sGameManager; }
-    public CameraSupport mCameraSupport;
+    public static GameManager sTheGlobalBehavior = null;
+    // public static GameManager TheGameManager() { return sGameManager; }
+    public CameraSupport mMainCameraSupport;
     public CameraSupport mBGCamera;
 
     // Awake is called before the first frame update
     void Awake()
     {
-        sGameManager = this;
+        GameManager.sTheGlobalBehavior = this;
         // ButtonBehavior.setGameManager(this);
     }
 
@@ -22,6 +22,11 @@ public class GameManager : MonoBehaviour
         
     }
 
+    #region Bound Support
+    public CameraSupport.WorldBoundStatus CollideWorldBound(Bounds b) { return mMainCameraSupport.CollideWorldBound(b); }
+    #endregion 
+
+
     public void activateInformationTab(bool activation)
     {
         // Turn On 
@@ -29,7 +34,7 @@ public class GameManager : MonoBehaviour
         {
             // Activate BG Camera 
             mBGCamera.SetActive(true);
-            mCameraSupport.SetViewprotSize(.8f, 1f);
+            mMainCameraSupport.SetViewprotSize(.8f, 1f);
             // Change Camera size / zoom
 
         }
@@ -38,7 +43,7 @@ public class GameManager : MonoBehaviour
         if (!activation)
         {
             mBGCamera.SetActive(false);
-            mCameraSupport.SetViewprotSize(1f, 1f);
+            mMainCameraSupport.SetViewprotSize(1f, 1f);
 
             // Change Camera size / zoom 
 
