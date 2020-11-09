@@ -47,6 +47,7 @@ public class EnemySpawnSystem : MonoBehaviour
                 GameObject e = GameObject.Instantiate(enemy) as GameObject;
                 e.transform.position = mousePos;
                 Vector3 v = target.position - mousePos;
+
                 e.transform.up = Vector3.LerpUnclamped(transform.up, target.position, 1);
                 e.GetComponent<AIDestinationSetter>().target = target;
             }
