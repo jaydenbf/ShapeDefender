@@ -14,11 +14,11 @@ public class MainBuilding : Building
 
     #region Main Base Variables
     // Variables to change later
-    private float attackRadius = 200f;
+    private float attackRadius = 10f;
     private float attackDamage = 5f;
     private float attackSpeed = 1f;
 
-    private float maxAttackRadius = 100f;
+    private float maxAttackRadius = 20f;
     private float maxAttackDamage = 20f;
     private float maxAttackSpeed = 5f;
 
@@ -39,6 +39,11 @@ public class MainBuilding : Building
     private float sendingRate = 1f;
 
     #endregion
+
+    #region Projectile variables
+    public ProjectileSpawnSystem mProjectileSpawnSystem;
+    #endregion
+
     // Start is called before the first frame update
     void Start()
     {
@@ -118,15 +123,17 @@ public class MainBuilding : Building
     private void attackEnemy()
     {
         // https://docs.unity3d.com/ScriptReference/Physics.OverlapSphere.html
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, attackRadius);
+         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, attackRadius);
+
         for(int i = 0; i < hitColliders.Length; i++)
         {
             // Change gameObject.name to enemies name
-            if (hitColliders[i].gameObject.name == gameObject.name)
+            if (hitColliders[i].gameObject.name == "Triangle")
             {
+                UnityEngine.Debug.Log("Entering " + hitColliders[i].gameObject.name);
+
                 // Attack Enenmy 
-                GameObject enemy = hitColliders[i].gameObject;
-                damageEnemy(enemy);
+                damageEnemy(hitColliders[i].gameObject);
                 return;
             }
         }
@@ -136,7 +143,11 @@ public class MainBuilding : Building
 
     private void damageEnemy(GameObject enemy)
     {
+        if (mProjectileSpawnSystem.CanSpawn())
+        {
+            mProjectileSpawnSystem.SpawnAnEgg(transform.position, enemy.transform.position);
 
+        }
     }
 
     #endregion
