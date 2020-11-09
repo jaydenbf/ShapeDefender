@@ -21,7 +21,6 @@ public class MouseController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             // left mouse button is clicked
-
             // get tile info from mouse location
             thisClickedTile = tilemap.WorldToCell(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 
