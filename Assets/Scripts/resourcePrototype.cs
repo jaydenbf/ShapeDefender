@@ -57,7 +57,7 @@ public class resourcePrototype : MonoBehaviour
                 foreground.SetTile(mouseTile + new Vector3Int(-1, 1, 0), buildingTiles[0]);
 
                 // create new building object
-                var building = gameObject.AddComponent<Building>();
+                var building = gameObject.AddComponent<BuildingPrototype>();
 
                 // set location of building
                 building.SetLocation(mouseTile);

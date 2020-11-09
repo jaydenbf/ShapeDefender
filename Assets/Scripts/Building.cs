@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Building : MonoBehaviour
+public class BuildingPrototype : MonoBehaviour
 {
     Vector3 location;
     string color;
