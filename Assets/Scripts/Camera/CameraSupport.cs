@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using UnityEngine;
 
 public class CameraSupport : MonoBehaviour
@@ -11,6 +12,8 @@ public class CameraSupport : MonoBehaviour
     private TimedLerp mPositionLerp = new TimedLerp(2f, 4f);  // 2 second duration, rate of 4 per second
     private TimedLerp mSizeLerp = new TimedLerp(2f, 4f);      // Similar values
 
+    public float dragSpeed = 2;
+    private Vector3 dragOrigin;
 
     public enum WorldBoundStatus
     {
@@ -36,7 +39,6 @@ public class CameraSupport : MonoBehaviour
 
     void Update()
     {
-
     }
 
     public Bounds GetWorldBound() { return mWorldBound; }
@@ -147,8 +149,13 @@ public class CameraSupport : MonoBehaviour
     #endregion
     public void MoveBy(float dx, float dy)
     {
-        Vector3 p = transform.position + new Vector3(dx, dy, 0f); // DO NOT change the Z-value!
-        mPositionLerp.BeginLerp(transform.position, p);
+        // Check bounds
+        if(Mathf.Abs(dx) < 32f * .8f && Mathf.Abs(dy) < 9f * .7f)
+        {
+            Vector3 p = transform.position + new Vector3(dx, dy, 0f); // DO NOT change the Z-value!
+            mPositionLerp.BeginLerp(transform.position, p);
+        }
+
     }
 
     #region Camera Manipulation
@@ -163,10 +170,14 @@ public class CameraSupport : MonoBehaviour
     // CANNOT touch the z-value!
     public void MoveTo(float x, float y)
     {
-        Vector3 p = transform.position;
-        p.x = x;
-        p.y = y;
-        mPositionLerp.BeginLerp(transform.position, p);
+        if (Mathf.Abs(x) < 32f * .55f && Mathf.Abs(y) < 9f * .87f)
+        {
+            Vector3 p = transform.position;
+            p.x = x;
+            p.y = y;
+            mTheCamera.transform.position = Vector3.Lerp(mTheCamera.transform.position, p, 1f);
+            // mPositionLerp.BeginLerp(transform.position, p);
+        }
     }
 
     // zoom > 1: zoom out, see more of the world
@@ -198,25 +209,9 @@ public class CameraSupport : MonoBehaviour
         Zoom(zoom);
     }
 
-    public void PushCameraByPos(Vector3 aPos, float region = 1f)
+    public bool isOrthographizSize()
     {
-        Bounds b = new Bounds(transform.position, region * mWorldBound.size);
-        Vector3 delta = Vector3.zero;
-        if (!BoundsContainsPointXY(b, aPos))
-        {   // pos is outside, let's push
-            if (aPos.x > b.max.x)
-                delta.x = aPos.x - b.max.x;
-            else if (aPos.x < b.min.x)
-                delta.x = aPos.x - b.min.x;
-
-            if (aPos.y > b.max.y)
-                delta.y = aPos.y - b.max.y;
-            else if (aPos.y < b.min.y)
-                delta.y = aPos.y - b.min.y;
-
-            Vector3 p = transform.position + delta;
-            mPositionLerp.BeginLerp(transform.position, p);
-        }
+        return Camera.main.orthographicSize - .2f < 9f;
     }
 
     #endregion

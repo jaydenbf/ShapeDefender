@@ -6,11 +6,13 @@ public class Zoom : MonoBehaviour
 {
     private Camera cam;
     private float zoom;
+    private float zoomMin; 
 
     void Start()
     {
         cam = Camera.main;
         zoom = cam.orthographicSize;
+        zoomMin = zoom;
     }
 
     void Update()
