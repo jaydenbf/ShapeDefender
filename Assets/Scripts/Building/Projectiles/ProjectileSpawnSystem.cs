@@ -5,7 +5,7 @@ using UnityEngine;
 public class ProjectileSpawnSystem : MonoBehaviour
 {
     private GameObject mProjectile = null;
-    private float mProjectileInterval = 1f;
+    private float mProjectileInterval = 0.2f;
     private float mSpawnProjectileAt = 0f;
     // Start is called before the first frame update
     void Start()

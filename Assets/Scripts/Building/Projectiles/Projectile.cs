@@ -30,6 +30,11 @@ public class Projectile : MonoBehaviour
        
     }
 
+    private void OnBecameInvisible()
+    {
+        Destroy(this.gameObject);
+    }
+
     private void DestroyThisProjectile(string name)
     {
         // Watch out!! a collision with overlap objects (e.g., two objects at the same location 

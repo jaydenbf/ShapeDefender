@@ -17,6 +17,5 @@ public class EnemyBehavior : MonoBehaviour
             Debug.Log("DESTROY");
             Destroy(transform.gameObject);
         }
-
     }
 }
