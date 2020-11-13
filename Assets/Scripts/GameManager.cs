@@ -8,65 +8,70 @@ public class GameManager : MonoBehaviour
     // public static GameManager TheGameManager() { return sGameManager; }
     public CameraSupport mMainCameraSupport;
     public MouseController mMouseMovement;
+
+    public float dragSpeed = 6.5f;
+    public float panBorderThickness = 200f;
+    public Vector2 panLimit;
+
     private bool tileClick = true;
-
-    public float dragSpeed = 2;
-    private Vector3 dragOrigin;
-
-    public bool cameraDragging = true;
-
-    public float outerLeft = -10f;
-    public float outerRight = 10f;
-
 
     // Awake is called before the first frame update
     void Awake()
     {
         GameManager.sTheGlobalBehavior = this;
-        // ButtonBehavior.setGameManager(this);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.M))
+        Vector3 p = mMainCameraSupport.getPos();
+
+        if(Input.GetKey("w") || Input.mousePosition.y >= Screen.height - panBorderThickness)
         {
-            tileClick = !tileClick;
+            p.y += dragSpeed * Time.deltaTime;
         }
+
+        if (Input.GetKey("s") || Input.mousePosition.y <=  panBorderThickness)
+        {
+            p.y -= dragSpeed * Time.deltaTime;
+        }
+
+        if (Input.GetKey("d") || Input.mousePosition.x >= Screen.width - panBorderThickness)
+        {
+            p.x += dragSpeed * Time.deltaTime;
+        }
+
+        if (Input.GetKey("a") || Input.mousePosition.x <= panBorderThickness)
+        {
+            p.x -= dragSpeed * Time.deltaTime;
+        }
+
+        // Check for Bounds 
+        p.x = Mathf.Clamp(p.x, -panLimit.x, panLimit.x);
+        p.y = Mathf.Clamp(p.y, -panLimit.y, panLimit.y);
+        
+        // Move Camera
+        mMainCameraSupport.MoveTo(p);
+
 
         // Return to base
         if (Input.GetKeyUp(KeyCode.N))
         {
-            mMainCameraSupport.MoveTo(0f, 0f);
+            Vector3 p1 = new Vector3(0, 0, 0);
+            mMainCameraSupport.MoveTo(p1);
         }
 
         if (Input.GetMouseButtonDown(0))
         {
-            if(tileClick)
-            {
-                mMouseMovement.firstClickTile();
-            }
-            else
-            {
-                // mMainCameraSupport.isOrthographizSize()
 
-                    Vector3Int p = mMouseMovement.getmousePosition();
-                    mMainCameraSupport.MoveTo(p.x, p.y);
-            }
+             mMouseMovement.firstClickTile();
+
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            if (tileClick)
-            {
-                mMouseMovement.secondClickTile();
-            }
+
+             mMouseMovement.secondClickTile();
         }
-
-
     }
-
-    #region Bound Support
-    public CameraSupport.WorldBoundStatus CollideWorldBound(Bounds b) { return mMainCameraSupport.CollideWorldBound(b); }
-    #endregion
 
 }
