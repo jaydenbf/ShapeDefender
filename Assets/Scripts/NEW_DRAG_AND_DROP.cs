@@ -25,14 +25,15 @@ public class NEW_DRAG_AND_DROP : MonoBehaviour, IBeginDragHandler, IDragHandler,
 
     public float size;
     public GameObject prefab;
+    private Vector3 initialPosition;
 
     private CanvasGroup canvasGroup;
 
     void Start()
     {
         canvasGroup = GetComponent<CanvasGroup>();
-
         size = transform.localScale.x;
+        initialPosition = transform.localPosition;
     }
 
     void Update()
@@ -61,6 +62,31 @@ public class NEW_DRAG_AND_DROP : MonoBehaviour, IBeginDragHandler, IDragHandler,
         {
             isDragging = true;
             canvasGroup.blocksRaycasts = false;
+
+            if (size == 1)
+            {
+                Vector3Int cell;
+                cell = tilemap.WorldToCell(transform.position);
+                tilemap.SetTile(cell, null);
+            }
+            else if (size == 2)
+            {
+                Vector3Int TR;
+                TR = tilemap.WorldToCell(transform.position);
+                tilemap.SetTile(TR, null);
+
+                Vector3Int TL;
+                TL = tilemap.WorldToCell(new Vector3(transform.position.x - 1, transform.position.y));
+                tilemap.SetTile(TL, null);
+
+                Vector3Int BL;
+                BL = tilemap.WorldToCell(new Vector3(transform.position.x - 1, transform.position.y - 1));
+                tilemap.SetTile(BL, null);
+
+                Vector3Int BR;
+                BR = tilemap.WorldToCell(new Vector3(transform.position.x, transform.position.y - 1));
+                tilemap.SetTile(BR, null);
+            }
         }
     }
 
@@ -78,9 +104,21 @@ public class NEW_DRAG_AND_DROP : MonoBehaviour, IBeginDragHandler, IDragHandler,
     {
         if(!isPlaced || isMovableAfterPlaced)
         {
+            if(isColliding)
+            {
+                transform.localPosition = initialPosition;
+
+                isPlaced = true;
+                isDragging = false;
+                canvasGroup.blocksRaycasts = true;
+                return;
+            }
+
             isPlaced = true;
             isDragging = false;
             canvasGroup.blocksRaycasts = true;
+
+            initialPosition = transform.localPosition;
 
             Vector3 p = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             p.z = 0f;
@@ -150,6 +188,7 @@ public class NEW_DRAG_AND_DROP : MonoBehaviour, IBeginDragHandler, IDragHandler,
 
     private void onMouseUp()
     {
+
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -159,7 +198,7 @@ public class NEW_DRAG_AND_DROP : MonoBehaviour, IBeginDragHandler, IDragHandler,
 
     public void OnTriggerStay2D(Collider2D collision)
     {
-
+        isColliding = true;
     }
 
     public void OnTriggerExit2D(Collider2D collision)

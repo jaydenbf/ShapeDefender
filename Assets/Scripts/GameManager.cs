@@ -26,22 +26,42 @@ public class GameManager : MonoBehaviour
     {
         Vector3 p = mMainCameraSupport.getPos();
 
-        if(Input.GetKey("w") || Input.mousePosition.y >= Screen.height - panBorderThickness)
+        //if(Input.GetKey("w") || Input.mousePosition.y >= Screen.height - panBorderThickness)
+        //{
+        //    p.y += dragSpeed * Time.deltaTime;
+        //}
+
+        //if (Input.GetKey("s") || Input.mousePosition.y <=  panBorderThickness)
+        //{
+        //    p.y -= dragSpeed * Time.deltaTime;
+        //}
+
+        //if (Input.GetKey("d") || Input.mousePosition.x >= Screen.width - panBorderThickness)
+        //{
+        //    p.x += dragSpeed * Time.deltaTime;
+        //}
+
+        //if (Input.GetKey("a") || Input.mousePosition.x <= panBorderThickness)
+        //{
+        //    p.x -= dragSpeed * Time.deltaTime;
+        //}
+
+        if (Input.GetKey("w"))
         {
             p.y += dragSpeed * Time.deltaTime;
         }
 
-        if (Input.GetKey("s") || Input.mousePosition.y <=  panBorderThickness)
+        if (Input.GetKey("s"))
         {
             p.y -= dragSpeed * Time.deltaTime;
         }
 
-        if (Input.GetKey("d") || Input.mousePosition.x >= Screen.width - panBorderThickness)
+        if (Input.GetKey("d"))
         {
             p.x += dragSpeed * Time.deltaTime;
         }
 
-        if (Input.GetKey("a") || Input.mousePosition.x <= panBorderThickness)
+        if (Input.GetKey("a"))
         {
             p.x -= dragSpeed * Time.deltaTime;
         }

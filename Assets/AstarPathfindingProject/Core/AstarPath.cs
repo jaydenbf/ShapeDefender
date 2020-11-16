@@ -854,6 +854,8 @@ public class AstarPath : VersionedMonoBehaviour {
 		// This class uses the [ExecuteInEditMode] attribute
 		// So Update is called even when not playing
 		// Don't do anything when not in play mode
+		AstarPath.active.Scan();
+
 		if (!Application.isPlaying) return;
 
 		navmeshUpdates.Update();

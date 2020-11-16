@@ -30,7 +30,7 @@ public class EnemyAttack : MonoBehaviour
             return;
         }
         isAlive();
-        attack();
+        //attack();
     }
 
     private void attack()
