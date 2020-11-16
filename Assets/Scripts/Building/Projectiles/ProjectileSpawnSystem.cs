@@ -29,7 +29,7 @@ public class ProjectileSpawnSystem : MonoBehaviour
 
     public float TimeTillNext()
     {
-        float sinceLastProjectile= Time.realtimeSinceStartup - mSpawnProjectileAt;
+        float sinceLastProjectile = Time.realtimeSinceStartup - mSpawnProjectileAt;
         return mProjectileInterval - sinceLastProjectile;
     }
 
