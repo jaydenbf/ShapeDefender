@@ -14,9 +14,9 @@ public class NEW_DRAG_AND_DROP : MonoBehaviour, IBeginDragHandler, IDragHandler,
     public Tile tile;
     public Tilemap tilemap;
 
-    private bool isDragging = false;
-    private bool isColliding = false;
-    private bool isPlaced = false;
+    public bool isDragging = false;
+    public bool isColliding = false;
+    public bool isPlaced = false;
     public bool isMovableAfterPlaced = false;
 
     Color normal = new Color(1.0f, 1.0f, 1.0f, 1.0f);
@@ -34,6 +34,15 @@ public class NEW_DRAG_AND_DROP : MonoBehaviour, IBeginDragHandler, IDragHandler,
         canvasGroup = GetComponent<CanvasGroup>();
         size = transform.localScale.x;
         initialPosition = transform.localPosition;
+
+        if(gameObject.name == "Red Square")
+        {
+            prefab = Resources.Load<GameObject>("Prefabs/NEW DRAG AND DROP/Red Square") as GameObject;
+
+        } else if(gameObject.name == "Blue Square")
+        {
+            prefab = Resources.Load<GameObject>("Prefabs/NEW DRAG AND DROP/Blue Square") as GameObject;
+        }
     }
 
     void Update()
@@ -63,6 +72,13 @@ public class NEW_DRAG_AND_DROP : MonoBehaviour, IBeginDragHandler, IDragHandler,
             isDragging = true;
             canvasGroup.blocksRaycasts = false;
 
+            if (!isPlaced)
+            {
+                GameObject g = Instantiate(prefab);
+                NEW_DRAG_AND_DROP d = g.GetComponentInChildren<NEW_DRAG_AND_DROP>();
+                d.tilemap = tilemap;
+            }
+
             if (size == 1)
             {
                 Vector3Int cell;
@@ -87,6 +103,8 @@ public class NEW_DRAG_AND_DROP : MonoBehaviour, IBeginDragHandler, IDragHandler,
                 BR = tilemap.WorldToCell(new Vector3(transform.position.x, transform.position.y - 1));
                 tilemap.SetTile(BR, null);
             }
+
+
         }
     }
 
@@ -106,12 +124,14 @@ public class NEW_DRAG_AND_DROP : MonoBehaviour, IBeginDragHandler, IDragHandler,
         {
             if(isColliding)
             {
-                transform.localPosition = initialPosition;
+                Destroy(transform.parent.gameObject);
 
-                isPlaced = true;
-                isDragging = false;
-                canvasGroup.blocksRaycasts = true;
-                return;
+                //transform.localPosition = initialPosition;
+
+                //isPlaced = true;
+                //isDragging = false;
+                //canvasGroup.blocksRaycasts = true;
+                //return;
             }
 
             isPlaced = true;
