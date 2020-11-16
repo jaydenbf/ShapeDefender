@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,6 +13,20 @@ public class GameManager : MonoBehaviour
     public float dragSpeed = 6.5f;
     public float panBorderThickness = 200f;
     public Vector2 panLimit;
+
+
+    public Text redCtxt;
+    public Text greenCtxt;
+    public Text blueCtxt;
+    public Text redStxt;
+    public Text greenStxt;
+    public Text blueStxt;
+    public static int redCircles = 1;
+    public static int greenCircles = 2;
+    public static int blueCircles = 3;
+    public static int redSquares = 4;
+    public static int greenSquares = 5;
+    public static int blueSquares = 6;
 
     private bool tileClick = true;
 
@@ -25,6 +40,14 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         Vector3 p = mMainCameraSupport.getPos();
+
+        redCtxt.text = redCircles.ToString();
+        greenCtxt.text = greenCircles.ToString();
+        blueCtxt.text = blueCircles.ToString();
+        redStxt.text = redSquares.ToString();
+        greenStxt.text = greenSquares.ToString();
+        blueStxt.text = blueSquares.ToString();
+
 
         //if(Input.GetKey("w") || Input.mousePosition.y >= Screen.height - panBorderThickness)
         //{
