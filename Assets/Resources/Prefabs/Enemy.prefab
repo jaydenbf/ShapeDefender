@@ -144,6 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f27134dc550d2e43a35cde94b8bd5e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rangeAttack: 0
 --- !u!1 &9171692239351178606
 GameObject:
   m_ObjectHideFlags: 0
@@ -156,11 +157,11 @@ GameObject:
   - component: {fileID: 9171692239351178592}
   - component: {fileID: 9171692239351178607}
   - component: {fileID: 9171692239351178594}
-  - component: {fileID: 8694323036687687912}
   - component: {fileID: 4317867924639758195}
   - component: {fileID: 6206036482707160103}
+  - component: {fileID: -6352471410583936311}
   m_Layer: 0
-  m_Name: Enemy 1
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -259,18 +260,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   target: {fileID: 0}
---- !u!114 &8694323036687687912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9171692239351178606}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc41ce9bdc9d45a458d4f50beea6769b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1839735485 &4317867924639758195
 Tilemap:
   m_ObjectHideFlags: 0
@@ -325,3 +314,16 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!114 &-6352471410583936311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9171692239351178606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f27134dc550d2e43a35cde94b8bd5e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rangeAttack: 0
