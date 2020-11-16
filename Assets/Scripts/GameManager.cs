@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 p = mMainCameraSupport.getPos();
+        /*Vector3 p = mMainCameraSupport.getPos();
 
         if(Input.GetKey("w") || Input.mousePosition.y >= Screen.height - panBorderThickness)
         {
@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
         {
 
              mMouseMovement.secondClickTile();
-        }
+        }*/
     }
 
 }
