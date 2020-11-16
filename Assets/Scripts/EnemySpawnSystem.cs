@@ -79,7 +79,7 @@ public class EnemySpawnSystem : MonoBehaviour
     {
         // 15 x 8 cord pos
         GameObject e = GameObject.Instantiate(eGreenTriange) as GameObject;
-        mainBase = GameObject.Find("Player");
+        mainBase = GameObject.Find("MainBuilding");
         float x = generateValue(10f, 15f);
         float y = generateValue(0f, 9f);
 
