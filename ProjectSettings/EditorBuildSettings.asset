@@ -6,12 +6,24 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
+    path: 
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 0
-    path: Assets/Scenes/Sidebar Prototype.unity
+    path: 
     guid: 608fc2bd5fd164344ab2ebf467679344
   - enabled: 1
-    path: Assets/Scenes/BuildingAttacks.unity
+    path: Assets/Scenes/Prototypes/BuildingAttacks Prototype.unity
     guid: c42873e16aeec7644a644087fa36ac67
+  - enabled: 1
+    path: Assets/Scenes/Main Game.unity
+    guid: b6653b1299fe82e4b9e888a0be74af76
+  - enabled: 1
+    path: Assets/Scenes/Loss Screen.unity
+    guid: e48bda77a9abbda498903baa40971352
+  - enabled: 1
+    path: Assets/Scenes/Win Screen.unity
+    guid: a7431c98a62e1224f8b27d60c1b5b0a2
+  - enabled: 1
+    path: Assets/Scenes/Main Menu.unity
+    guid: 756b19d3c9383334ea826e5f0ac643ae
   m_configObjects: {}
