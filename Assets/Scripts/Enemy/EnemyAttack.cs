@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyAttack : MonoBehaviour
 {
     public bool rangeAttack; 
-    int hitPoint = 0;
+    int hitPoint = 4;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,20 +15,21 @@ public class EnemyAttack : MonoBehaviour
     void Update()
     {
         isAlive();
+        /*
         Vector3 targetPos = GameObject.Find("Player").transform.position;
         if ((targetPos - gameObject.transform.position).magnitude < 1.5f)
         {
             Debug.Log("DESTROY");
             Destroy(transform.gameObject);
         }
+        */
     }
 
     private void isAlive()
     {
-        if(hitPoint > 3)
+        if(hitPoint <= 0)
         {
             Destroy(this.gameObject);
-            UnityEngine.Debug.Log("Egg Died");
         }
     }
 
@@ -36,7 +37,7 @@ public class EnemyAttack : MonoBehaviour
     {
         if (collision.name == "Egg(Clone)")
         {
-            hitPoint++;
+            hitPoint--;
         }
     }
 }
