@@ -44,6 +44,9 @@ public class MainBuilding : Building
     public ProjectileSpawnSystem mProjectileSpawnSystem;
     #endregion
 
+    #region Enemy Spawn List
+    public GameObject enemyMain;
+    #endregion
     // Start is called before the first frame update
     void Start()
     {
@@ -122,22 +125,24 @@ public class MainBuilding : Building
     #region Attacking Enemy
     private void attackEnemy()
     {
-        // https://docs.unity3d.com/ScriptReference/Physics.OverlapSphere.html
-         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, attackRadius);
-
-        for(int i = 0; i < hitColliders.Length; i++)
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, attackRadius);
+        if (enemyMain == null)
         {
-            // Change gameObject.name to enemies name
-            if (hitColliders[i].gameObject.name == "Triangle")
+            for (int i = 0; i < hitColliders.Length; i++)
             {
-                UnityEngine.Debug.Log("Entering " + hitColliders[i].gameObject.name);
-
-                // Attack Enenmy 
-                damageEnemy(hitColliders[i].gameObject);
-                return;
+                // Change gameObject.name to enemies name
+                if (hitColliders[i].gameObject.name == "Triangle")
+                {
+                    enemyMain = hitColliders[i].gameObject;
+                    break;
+                }
             }
         }
 
+        if(enemyMain != null)
+        {
+            damageEnemy(enemyMain.gameObject);
+        }
 
     }
 

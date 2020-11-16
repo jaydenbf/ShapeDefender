@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
         // Return to base
         if (Input.GetKeyUp(KeyCode.N))
         {
-            Vector3 p1 = new Vector3(0, 0, 0);
+            Vector3 p1 = new Vector3(0, 0, -10);
             mMainCameraSupport.MoveTo(p1);
         }
 
