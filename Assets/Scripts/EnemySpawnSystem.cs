@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using Pathfinding;
 using System;
+using UnityEngine.SceneManagement;
+
 
 public class EnemySpawnSystem : MonoBehaviour
 {
@@ -33,7 +35,7 @@ public class EnemySpawnSystem : MonoBehaviour
         countdownTimer();
         if (gameTime <= 0f)
         {
-            // End the game
+            SceneManager.LoadScene("Win Screen");
 
         }
 

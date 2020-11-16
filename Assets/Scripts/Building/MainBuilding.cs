@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class MainBuilding : Building
 {
@@ -37,7 +39,7 @@ public class MainBuilding : Building
     #region Base Connection and Resources
     private GameObject[] connectedBase;
     private float sendingRate = 1f;
-
+    private int healthAmount = 50; 
     #endregion
 
     #region Projectile variables
@@ -57,6 +59,10 @@ public class MainBuilding : Building
     // Update is called once per frame
     void Update()
     {
+        if(healthAmount < 0)
+        {
+            SceneManager.LoadScene("Loss Screen");
+        }
         attackEnemy();
     }
 
@@ -157,6 +163,14 @@ public class MainBuilding : Building
 
     #endregion
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        UnityEngine.Debug.Log(collision.name);
+        if (collision.name == "EnemyPro(Clone)")
+        {
+            healthAmount--;
+        }
+    }
     #region Update Health Bar
 
 

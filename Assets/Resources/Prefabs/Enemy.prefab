@@ -145,6 +145,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rangeAttack: 0
+  hitPoint: 4
+  attackRadius: 50
 --- !u!1 &9171692239351178606
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,3 +329,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rangeAttack: 1
+  hitPoint: 4
+  attackRadius: 50

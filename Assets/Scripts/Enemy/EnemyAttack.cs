@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    public bool rangeAttack; 
-    int hitPoint = 4;
+    private static bool rangeAttack = true; 
+    public int hitPoint = 4;
+    public float attackRadius = 50f;
     private bool destory = false;
     // Start is called before the first frame update
 
@@ -24,11 +25,17 @@ public class EnemyAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKey("o"))
+        {
+            rangeAttack = !rangeAttack;
+        }
+
         if (destory)
         {
             Destroy(transform.parent.gameObject);
             return;
         }
+
         isAlive();
         attack();
     }
@@ -36,11 +43,15 @@ public class EnemyAttack : MonoBehaviour
     private void attack()
     {
         Vector3 targetPos = GameObject.Find("MainBuilding").transform.position;
-        if ((targetPos - gameObject.transform.position).magnitude < 700f)
+
+        if (rangeAttack)
         {
-            if (CanSpawn())
+            if ((targetPos - gameObject.transform.position).magnitude < attackRadius)
             {
-                SpawnAnEgg(transform.position, transform.up);
+                if (CanSpawn())
+                {
+                    SpawnAnEgg(transform.position, transform.up);
+                }
             }
         }
     }
