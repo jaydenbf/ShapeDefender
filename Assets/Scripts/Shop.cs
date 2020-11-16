@@ -17,9 +17,12 @@ public class Shop : MonoBehaviour
     public int towerPrice = 50;
     public int upgradePrice = 80;
 
-    public Text redUI = null;
-    public Text greenUI = null;
-    public Text blueUI = null;
+    public Text redCircleUI = null;
+    public Text greenCircleUI = null;
+    public Text blueCircleUI = null;
+    public Text redSquareUI = null;
+    public Text greenSquareUI = null;
+    public Text blueSquareUI = null;
 
     void Start()
     {
@@ -28,9 +31,12 @@ public class Shop : MonoBehaviour
 
     void Update()
     {
-        redUI.text = "R:\t\t\t" + redCircle;
-        greenUI.text = "G:\t\t" + greenCircle;
-        blueUI.text = "B:\t\t\t" + blueCircle;
+        redCircleUI.text = "" + redCircle;
+        greenCircleUI.text = "" + greenCircle;
+        blueCircleUI.text = "" + blueCircle;
+        redSquareUI.text = "" + redSquare;
+        greenSquareUI.text = "" + greenSquare;
+        blueSquareUI.text = "" + blueSquare;
     }
 
     public void addRedCircle()
