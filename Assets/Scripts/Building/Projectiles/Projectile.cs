@@ -5,6 +5,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     // All instance of Projectiles share this one Projectile Spawn System
+    public int projectileType = 0;
     private static ProjectileSpawnSystem sProjectileSystem = null;
     public static void InitializesProjectileSystem(ProjectileSpawnSystem p) { sProjectileSystem = p; }
 
@@ -20,12 +21,30 @@ public class Projectile : MonoBehaviour
         transform.position += transform.up * (kProjectileSpeed * Time.smoothDeltaTime);
     }
 
+    public void changeProjectileType(int x)
+    {
+        projectileType = x;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.name == "Triangle")
+        UnityEngine.Debug.Log(collision.name);
+
+        if(projectileType == 1)
         {
-            gameObject.SetActive(false);  // set inactive!
-            Destroy(this.gameObject);
+            if (collision.name == "MainBuilding")
+            {
+                gameObject.SetActive(false);  // set inactive!
+                Destroy(this.gameObject);
+            }
+        }
+        else
+        {
+            if (collision.name == "Triangle")
+            {
+                gameObject.SetActive(false);  // set inactive!
+                Destroy(this.gameObject);
+            }
         }
        
     }

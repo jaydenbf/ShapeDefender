@@ -11,13 +11,13 @@ public class EnemyAttack : MonoBehaviour
 
     #region Projectile Variables
     private GameObject mProjectile = null;
-    private float mProjectileInterval = 0.2f;
+    private float mProjectileInterval = 1f;
     private float mSpawnProjectileAt = 0f;
 
     #endregion
     void Start()
     {
-        mProjectile = Resources.Load<GameObject>("Prefabs/Egg") as GameObject;
+        mProjectile = Resources.Load<GameObject>("Prefabs/EnemyPro") as GameObject;
         mSpawnProjectileAt = Time.realtimeSinceStartup - mProjectileInterval; // assume one was shot
     }
 
@@ -30,17 +30,17 @@ public class EnemyAttack : MonoBehaviour
             return;
         }
         isAlive();
-        //attack();
+        attack();
     }
 
     private void attack()
     {
         Vector3 targetPos = GameObject.Find("MainBuilding").transform.position;
-        if ((targetPos - gameObject.transform.position).magnitude < 10000f)
+        if ((targetPos - gameObject.transform.position).magnitude < 700f)
         {
             if (CanSpawn())
             {
-                SpawnAnEgg(transform.position, targetPos);
+                SpawnAnEgg(transform.position, transform.up);
             }
         }
     }
