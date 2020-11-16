@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using Unity.Mathematics;
 public class GameManager : MonoBehaviour
 {
     public static GameManager sTheGlobalBehavior = null;
@@ -21,12 +21,12 @@ public class GameManager : MonoBehaviour
     public Text redStxt;
     public Text greenStxt;
     public Text blueStxt;
-    public static int redCircles = 1;
-    public static int greenCircles = 2;
-    public static int blueCircles = 3;
-    public static int redSquares = 4;
-    public static int greenSquares = 5;
-    public static int blueSquares = 6;
+    public static float redCircles = 0;
+    public static float greenCircles = 0;
+    public static float blueCircles = 0;
+    public static float redSquares = 0;
+    public static float greenSquares = 0;
+    public static float blueSquares = 0;
 
     private bool tileClick = true;
 
@@ -41,12 +41,12 @@ public class GameManager : MonoBehaviour
     {
         Vector3 p = mMainCameraSupport.getPos();
 
-        redCtxt.text = redCircles.ToString();
-        greenCtxt.text = greenCircles.ToString();
-        blueCtxt.text = blueCircles.ToString();
-        redStxt.text = redSquares.ToString();
-        greenStxt.text = greenSquares.ToString();
-        blueStxt.text = blueSquares.ToString();
+        redCtxt.text = Mathf.Floor(redCircles).ToString();
+        greenCtxt.text = Mathf.Floor(greenCircles).ToString();
+        blueCtxt.text = Mathf.Floor(blueCircles).ToString();
+        redStxt.text = Mathf.Floor(redSquares).ToString();
+        greenStxt.text = Mathf.Floor(greenSquares).ToString();
+        blueStxt.text = Mathf.Floor(blueSquares).ToString();
 
 
         //if(Input.GetKey("w") || Input.mousePosition.y >= Screen.height - panBorderThickness)

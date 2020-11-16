@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class HarvesterBuilding : Building
 {
@@ -8,6 +9,7 @@ public class HarvesterBuilding : Building
     private float health;
     private Color defaultColor;
     int counter;
+    public Tilemap tilemap;
     // Add resource type
     #endregion
 
@@ -40,15 +42,32 @@ public class HarvesterBuilding : Building
         // Eight bases / road connected at one time
         connectedBase = new GameObject[totalBaseConnectionLimit];
         shopConnection = GameObject.FindObjectOfType<Shop>();
-        
+
+        tilemap = GameObject.Find("World").GetComponent<Tilemap>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        harvestResource();
-        checkConnections();
-        resourceHander();
+        //harvestResource();
+        //checkConnections();
+        //resourceHander();
+
+        Vector3Int tilePos = tilemap.WorldToCell(gameObject.transform.position);
+        TileBase tile = tilemap.GetTile(tilePos);
+
+        if (tile.name == "SciFi_Warehouse_D_16")
+        {
+            GameManager.blueCircles += (2f * Time.deltaTime);
+        }
+        if (tile.name == "SciFi_Warehouse_D_17")
+        {
+            GameManager.greenCircles += (2f * Time.deltaTime);
+        }
+        if (tile.name == "SciFi_Warehouse_D_18")
+        {
+            GameManager.redCircles += (2f * Time.deltaTime);
+        }
     }
 
     #region Abstract Methods

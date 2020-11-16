@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3840264851290858499}
   - component: {fileID: 3840264851290858498}
   - component: {fileID: 3840264851290858497}
+  - component: {fileID: 1457031306517329835}
   m_Layer: 10
   m_Name: Blue Square
   m_TagString: Untagged
@@ -99,6 +100,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &1457031306517329835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3840264851290858496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da5c0f3ccacbcbb4fb588be56551b7af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tilemap: {fileID: 0}
 --- !u!1 &3840264851351441770
 GameObject:
   m_ObjectHideFlags: 0
@@ -114,6 +128,7 @@ GameObject:
   - component: {fileID: 3840264851351441776}
   - component: {fileID: 3840264851351441777}
   - component: {fileID: 5668287041385881140}
+  - component: {fileID: 5500645875945242748}
   m_Layer: 10
   m_Name: Blue Square
   m_TagString: Untagged
@@ -258,3 +273,16 @@ MonoBehaviour:
   isMovableAfterPlaced: 1
   size: 2
   prefab: {fileID: 0}
+--- !u!114 &5500645875945242748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3840264851351441770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da5c0f3ccacbcbb4fb588be56551b7af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tilemap: {fileID: 0}

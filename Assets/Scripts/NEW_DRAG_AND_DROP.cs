@@ -13,6 +13,7 @@ public class NEW_DRAG_AND_DROP : MonoBehaviour, IBeginDragHandler, IDragHandler,
     public Zoom zoom;
     public Tile tile;
     public Tilemap tilemap;
+    public Tilemap tilemap2;
 
     public bool isDragging = false;
     public bool isColliding = false;
@@ -76,7 +77,9 @@ public class NEW_DRAG_AND_DROP : MonoBehaviour, IBeginDragHandler, IDragHandler,
             {
                 GameObject g = Instantiate(prefab);
                 NEW_DRAG_AND_DROP d = g.GetComponentInChildren<NEW_DRAG_AND_DROP>();
+                HarvesterBuilding h = g.GetComponentInChildren<HarvesterBuilding>();
                 d.tilemap = tilemap;
+                h.tilemap = tilemap2;
             }
 
             if (size == 1)
