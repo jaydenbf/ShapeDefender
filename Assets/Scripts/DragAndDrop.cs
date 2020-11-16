@@ -92,31 +92,6 @@ public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
 
             isDragging = false;
 
-            if (newObject)
-            {
-                int p = 0;
-
-                if (gameObject.name == "Red Square")
-                {
-                    p = shop.redPrice;
-                    shop.redCount++;
-
-                }
-                else if (gameObject.name == "Green Square")
-                {
-                    p = shop.greenPrice;
-                    shop.greenCount++;
-
-                }
-                else if (gameObject.name == "Blue Square")
-                {
-                    p = shop.bluePrice;
-                    shop.blueCount++;
-                }
-
-                shop.cash -= p;
-            }
-
             newObject = false;
 
             float x = Mathf.Round(Input.mousePosition.x / 60f) * 60f;
@@ -218,22 +193,6 @@ public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
         if (eventData.button == PointerEventData.InputButton.Right && !newObject)
         {
             string n = gameObject.name;
-
-            if (n == "Red Square")
-            {
-                shop.redCount--;
-                shop.cash += shop.redPrice;
-
-            } else if(n == "Green Square")
-            {
-                shop.greenCount--;
-                shop.cash += shop.greenPrice;
-
-            } else if(n == "Blue Square")
-            {
-                shop.blueCount--;
-                shop.cash += shop.bluePrice;
-            }
 
             Destroy(transform.gameObject);
         }

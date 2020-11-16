@@ -6,16 +6,17 @@ using UnityEngine.UI;
 
 public class Shop : MonoBehaviour
 {
-    public int cash = 1000;
-    public int redCount = 0;
-    public int greenCount = 0;
-    public int blueCount = 0;
+    public int redCircle = 0;
+    public int redSquare = 0;
+    public int greenCircle = 0;
+    public int greenSquare = 0;
+    public int blueSquare = 0;
+    public int blueCircle = 0;
 
-    public int redPrice = 25;
-    public int greenPrice = 50;
-    public int bluePrice = 100;
+    public int harvesterPrice = 50;
+    public int towerPrice = 50;
+    public int upgradePrice = 80;
 
-    public Text cashUI = null;
     public Text redUI = null;
     public Text greenUI = null;
     public Text blueUI = null;
@@ -27,31 +28,90 @@ public class Shop : MonoBehaviour
 
     void Update()
     {
-        cashUI.text = "Cash:\t" + cash;
-        redUI.text = "R:\t\t\t" + redCount;
-        greenUI.text = "G:\t\t" + greenCount;
-        blueUI.text = "B:\t\t\t" + blueCount;
+        redUI.text = "R:\t\t\t" + redCircle;
+        greenUI.text = "G:\t\t" + greenCircle;
+        blueUI.text = "B:\t\t\t" + blueCircle;
+    }
+
+    public void addRedCircle()
+    {
+        redCircle++;
+    }
+    public void addRedSquare()
+    {
+        redSquare++;
+    }
+    public void addBlueCircle()
+    {
+        blueCircle++;
+    }
+    public void addBlueSquare()
+    {
+        blueSquare++;
+    }
+    public void addGreenCircle()
+    {
+        greenCircle++;
+    }
+    public void addGreenSquare()
+    {
+        greenSquare++;
+    }
+
+    public bool buyHarvester()
+    {
+        if (greenCircle >= harvesterPrice)
+        {
+            greenCircle = greenCircle - harvesterPrice;
+            return true;
+        }
+        else
+            return false;
+    }
+
+    public bool buyTower()
+    {
+        if (redCircle >= towerPrice)
+        {
+            redCircle = redCircle - towerPrice;
+            return true;
+        }
+        else
+            return false;
+    }
+
+    public bool buyUpgrade()
+    {
+        if (blueCircle >= upgradePrice)
+        {
+            blueCircle = blueCircle - upgradePrice;
+            return true;
+        }
+        else
+            return false;
     }
 
     public bool canAfford(string color)
     {
-        if(color == "Red Square")
+        if (color == "Red Square")
         {
-            if (cash - redPrice >= 0)
+            if (redCircle >= 0)
             {
                 return true;
             }
 
-        } else if(color == "Green Square")
+        }
+        else if (color == "Green Square")
         {
-            if(cash - greenPrice >= 0)
+            if (greenCircle >= 0)
             {
                 return true;
             }
 
-        } else if(color == "Blue Square")
+        }
+        else if (color == "Blue Square")
         {
-            if(cash - bluePrice >= 0)
+            if (blueCircle >= 0)
             {
                 return true;
             }

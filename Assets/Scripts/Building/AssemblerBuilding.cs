@@ -22,6 +22,7 @@ public class AssemblerBuilding : Building
     #region Base Connection and Resources
     private GameObject[] connectedBase;
     private float sendingRate = 1f;
+    private Shop shopConnection;
 
     #endregion
 
@@ -30,6 +31,7 @@ public class AssemblerBuilding : Building
     {
         connectedBase = new GameObject[8];
         allResourceTotal = new float[9];
+        shopConnection = GameObject.FindObjectOfType<Shop>();
     }
 
     // Update is called once per frame

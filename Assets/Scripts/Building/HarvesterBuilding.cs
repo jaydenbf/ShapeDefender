@@ -7,6 +7,7 @@ public class HarvesterBuilding : Building
     #region Abstract Global Variables
     private float health;
     private Color defaultColor;
+    int counter;
     // Add resource type
     #endregion
 
@@ -29,6 +30,7 @@ public class HarvesterBuilding : Building
     #region Base Connection and Resources
     private GameObject[] connectedBase;
     private int totalBaseConnectionLimit = 8;
+    private Shop shopConnection;
 
     #endregion
 
@@ -37,6 +39,7 @@ public class HarvesterBuilding : Building
     {
         // Eight bases / road connected at one time
         connectedBase = new GameObject[totalBaseConnectionLimit];
+        shopConnection = GameObject.FindObjectOfType<Shop>();
         
     }
 
@@ -152,10 +155,33 @@ public class HarvesterBuilding : Building
     #region Harvesting Output Methods
     public void harvestResource()
     {
-        // If building is on top of resoucre, colliding mine resource
-
-        // Get resource type and increase resourceCount. 
-
+        if (defaultColor == Color.red)
+        {
+            counter++;
+            if (counter > 1000)
+            {
+                shopConnection.addRedCircle();
+                counter = 0;
+            }
+        }
+        else if (defaultColor == Color.blue)
+        {
+            counter++;
+            if (counter > 1000)
+            {
+                shopConnection.addBlueCircle();
+                counter = 0;
+            }
+        }
+        if (defaultColor == Color.green)
+        {
+            counter++;
+            if (counter > 1000)
+            {
+                shopConnection.addGreenCircle();
+                counter = 0;
+            }
+        }
     }
     #endregion
 }
