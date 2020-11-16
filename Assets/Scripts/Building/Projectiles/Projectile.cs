@@ -38,7 +38,7 @@ public class Projectile : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
-        else
+        else if(projectileType == 0)
         {
             if (collision.name == "Triangle")
             {
